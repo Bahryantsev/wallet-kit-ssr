@@ -1,11 +1,11 @@
 import React, { useContext } from 'react'
 
-const createContext = <A>(name: string) => {
+const createContext = <A>(name: string, defaultValue:A) => {
   const ctx = React.createContext<A | undefined>(undefined)
 
   const useCtx = () => {
     const c = useContext(ctx)
-    if (!c) throw new Error(`${name} must be inside a provider with a value`)
+    if (!c) return defaultValue
     return c
   }
 

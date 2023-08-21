@@ -15,11 +15,19 @@ enum WalletStatus {
 }
 
 const [useWalletProvider, WalletProviderContext] = createContext<{
-  wallets: Wallet[]
-  state: WalletProviderState
-  defaultNetworks: InfoResponse
-  setState: React.Dispatch<React.SetStateAction<WalletProviderState>>
-}>('useWalletProvider')
+  wallets: Wallet[];
+  state: WalletProviderState;
+  defaultNetworks: InfoResponse;
+  setState: React.Dispatch<React.SetStateAction<WalletProviderState>>;
+}>("useWalletProvider", {
+  wallets: [],
+  state: {
+    status: WalletStatus.INITIALIZING,
+    network: {},
+  },
+  setState: () => {},
+  defaultNetworks: {},
+});
 
 interface WalletProviderProps {
   children: React.ReactNode
